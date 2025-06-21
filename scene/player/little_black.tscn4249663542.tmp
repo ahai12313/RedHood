@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdcivinx5ctx4"]
+
+[ext_resource type="PackedScene" uid="uid://cdcivinx5ctx4" path="res://scene/player/little_black.tscn" id="1_ndtp1"]
+
+[node name="LittleBlack" instance=ExtResource("1_ndtp1")]

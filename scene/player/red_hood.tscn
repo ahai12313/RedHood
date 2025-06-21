@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c38nbe1lp2wd2"]
+[gd_scene load_steps=18 format=3 uid="uid://c38nbe1lp2wd2"]
 
 [ext_resource type="Script" uid="uid://da6ct2hkxthgu" path="res://scene/player/red_hood.gd" id="1_nqyj4"]
 [ext_resource type="Texture2D" uid="uid://c40sdt1eibutg" path="res://assets/redhood.png" id="2_7nvxm"]
@@ -389,7 +389,11 @@ _data = {
 &"walk": SubResource("Animation_si2r4")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_si2r4"]
+size = Vector2(20, 27)
+
 [node name="RedHood" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_nqyj4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -399,6 +403,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 64, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 2)
 shape = SubResource("RectangleShape2D_g4563")
 
@@ -432,3 +437,13 @@ metadata/_custom_type_script = "uid://dj8njnox20x7w"
 [node name="PlayerAttackState" type="Node" parent="StateMachine"]
 script = ExtResource("8_si2r4")
 metadata/_custom_type_script = "uid://bxdesvacv2b14"
+
+[node name="PlayerBody" type="Area2D" parent="." groups=["player"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_si2r4")
+
+[connection signal="area_entered" from="PlayerBody" to="." method="_on_body_area_entered"]

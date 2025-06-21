@@ -1,8 +1,6 @@
 class_name PlayerWalkState
 extends State
 
-
-
 func enter() -> void:
 	owner_node.animation_player.play("walk")
 
@@ -17,6 +15,7 @@ func physics_update(delta: float) -> void:
 		state_machine.change_to(owner_node.player_attack_state)
 	if Input.is_action_just_pressed("jump"):
 		state_machine.change_to(owner_node.player_jump_state)
+	
 	if owner_node.velocity.x == 0 and not tend_to_move():
 		state_machine.change_to(owner_node.player_idle_state)
 

@@ -1,4 +1,4 @@
-class_name Player
+class_name Enemy
 extends CharacterBody2D
 
 enum Direction {
@@ -6,4 +6,4 @@ enum Direction {
 	RIGHT = 1,
 }
 
-var gravity = 980.0
+var gravity: float = 980.0

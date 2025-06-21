@@ -5,6 +5,9 @@ var owner_node: CharacterBody2D
 var state_machine: StateMachine
 
 const WALK_SPEED = 320
+const E_WALK_SPEED = 120
+const E_RUN_SPEED = 400
+const RUN_SPEED = 600
 var gravity = 980.0
 
 func setup(owner: CharacterBody2D, machine: StateMachine) -> void:

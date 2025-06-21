@@ -1,12 +1,6 @@
 class_name RedHood
 extends Player
 
-enum Direction {
-	LEFT = -1,
-	RIGHT = 1,
-}
-
-var gravity = 980.0
 var direction = Direction.RIGHT
 
 @onready var state_machine: StateMachine = $StateMachine
@@ -44,3 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	
 	move_and_slide()
+
+func _on_body_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy"):
+		print("enemy entered")

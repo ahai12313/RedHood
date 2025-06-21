@@ -21,10 +21,6 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		state_machine.change_to(owner_node.player_jump_state)
 		
-	
-	
-
-		
 func update(delta: float) -> void:
 	pass
 

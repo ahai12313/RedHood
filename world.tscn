@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://0lyvcldo8vje"]
+[gd_scene load_steps=7 format=3 uid="uid://0lyvcldo8vje"]
 
-[ext_resource type="Script" uid="uid://dvwgs7sxogw1d" path="res://scene/world.gd" id="1_f3sb7"]
-[ext_resource type="PackedScene" uid="uid://c38nbe1lp2wd2" path="res://scene/player/red_hood.tscn" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://dvwgs7sxogw1d" path="res://scene/world.gd" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://c38nbe1lp2wd2" path="res://scene/player/red_hood.tscn" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://ctd81kw3r752c" path="res://scene/snow.tscn" id="3_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://cy7gc6ou8i3g8" path="res://scene/enemy/little_black.tscn" id="4_aqk2v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gv5m4"]
 
@@ -10,7 +11,7 @@
 size = Vector2(1151, 43)
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_f3sb7")
+script = ExtResource("1_fj7yv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 5)
@@ -27,11 +28,14 @@ offset_bottom = 642.0
 position = Vector2(576.5, 620.5)
 shape = SubResource("RectangleShape2D_f3sb7")
 
-[node name="RedHood" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(287, 139)
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(288, 141)
 
 [node name="Snow" parent="." instance=ExtResource("3_tlwt5")]
 position = Vector2(624, -4)
+
+[node name="RedHood" parent="." instance=ExtResource("3_aqk2v")]
+position = Vector2(290, 139)
+
+[node name="LittleBlack" parent="." instance=ExtResource("4_aqk2v")]
+position = Vector2(653, 189)
