@@ -24,6 +24,7 @@ func _ready() -> void:
 	state_machine.change_to(player_idle_state)
 
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("move_left"):
 		direction = Direction.LEFT
 	if Input.is_action_just_pressed("move_right"):

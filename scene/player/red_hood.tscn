@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c38nbe1lp2wd2"]
+[gd_scene load_steps=19 format=3 uid="uid://c38nbe1lp2wd2"]
 
 [ext_resource type="Script" uid="uid://da6ct2hkxthgu" path="res://scene/player/red_hood.gd" id="1_nqyj4"]
 [ext_resource type="Texture2D" uid="uid://c40sdt1eibutg" path="res://assets/redhood.png" id="2_7nvxm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dqs5pv5xh6x4x" path="res://scene/player/player_fall.gd" id="6_a0me6"]
 [ext_resource type="Script" uid="uid://dj8njnox20x7w" path="res://scene/player/player_walk.gd" id="7_djqk2"]
 [ext_resource type="Script" uid="uid://bxdesvacv2b14" path="res://scene/player/player_attack.gd" id="8_si2r4"]
+[ext_resource type="Script" uid="uid://qxxu02shmvt4" path="res://scene/player/player_camera.gd" id="9_x1ni4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4563"]
 size = Vector2(18, 27)
@@ -445,5 +446,13 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_si2r4")
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+limit_smoothed = true
+script = ExtResource("9_x1ni4")
 
 [connection signal="area_entered" from="PlayerBody" to="." method="_on_body_area_entered"]
