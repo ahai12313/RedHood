@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8tu2cfr5od3j"]
+[gd_scene load_steps=12 format=3 uid="uid://b8tu2cfr5od3j"]
 
 [ext_resource type="Script" uid="uid://b76aa2w04fkl3" path="res://scene/enemy/drone.gd" id="1_m1rm5"]
 [ext_resource type="Texture2D" uid="uid://fsn4bhnvmd40" path="res://assets/drone.png" id="1_wk4nq"]
+[ext_resource type="Script" uid="uid://b2jc54rx7yl4m" path="res://scene/enemy/bullet.gd" id="3_pph5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1rm5"]
 atlas = ExtResource("1_wk4nq")
@@ -40,22 +41,51 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wk4nq"]
-size = Vector2(5.33333, 3.33333)
+size = Vector2(8, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1rm5"]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pph5a"]
+radius = 320.0
 
 [node name="Drone" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_m1rm5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_n2rs6")
 animation = &"idle"
 frame = 3
 frame_progress = 0.0380455
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.38419e-07, -0.5)
+position = Vector2(0, -4.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_wk4nq")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-rotation = 1.5708
+[node name="PlayerAttackArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackArea"]
+shape = SubResource("CircleShape2D_m1rm5")
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="PDC" type="CollisionShape2D" parent="PlayerDetect"]
+shape = SubResource("CircleShape2D_pph5a")
+
+[node name="bullet" type="CPUParticles2D" parent="."]
+position = Vector2(-8, 8)
+emitting = false
+gravity = Vector2(0, 0)
+script = ExtResource("3_pph5a")
+
+[connection signal="area_entered" from="PlayerAttackArea" to="." method="_on_player_attack_area_area_entered"]
+[connection signal="area_exited" from="PlayerAttackArea" to="." method="_on_player_attack_area_area_exited"]
+[connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]
+[connection signal="area_exited" from="PlayerDetect" to="." method="_on_player_detect_area_exited"]
