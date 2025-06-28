@@ -39,12 +39,11 @@ position = Vector2(623, 225)
 position = Vector2(290, 139)
 
 [node name="LittleBlack" parent="." instance=ExtResource("4_aqk2v")]
-visible = false
 position = Vector2(653, 189)
 
 [node name="LittleBlack2" parent="." instance=ExtResource("4_aqk2v")]
-visible = false
 position = Vector2(31, 26)
+enemy_type = "boxer"
 
 [node name="Drone" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(492, 552)

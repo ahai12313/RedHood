@@ -139,6 +139,6 @@ func _on_player_attack_area_area_entered(area: Area2D) -> void:
 
 
 func _on_player_attack_area_area_exited(area: Area2D) -> void:
-	print("_on_player_attack_area_area_exited")
+	#print("_on_player_attack_area_area_exited")
 	bullet.emitting = false
 	cur_state = DroneState.CHASE

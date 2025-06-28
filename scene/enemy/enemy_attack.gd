@@ -9,7 +9,10 @@ func setup(owner: CharacterBody2D, machine: StateMachine) -> void:
 	own = owner_node
 
 func enter() -> void:
-	own.animation_player.play("attack")
+	if own.enemy_type == "boxer":
+		own.animation_player.play("box")
+	else:
+		own.animation_player.play("attack")
 	own.velocity.x = 0
 	
 func exit() -> void:
@@ -19,8 +22,9 @@ func physics_update(delta: float) -> void:
 	pass
 	
 func update(delta: float) -> void:
-	if not own.animation_player.is_playing():
-		state_machine.change_to(own.enemy_idle_state)
+	#if not own.animation_player.is_playing():
+		#state_machine.change_to(own.enemy_idle_state)
+	pass
 
 func process_input(event: InputEvent) -> void:
 	pass

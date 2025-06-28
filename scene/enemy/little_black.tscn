@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cy7gc6ou8i3g8"]
+[gd_scene load_steps=17 format=3 uid="uid://cy7gc6ou8i3g8"]
 
 [ext_resource type="Script" uid="uid://yhhfdjqb1mqb" path="res://scene/enemy/little_black.gd" id="1_rp4yb"]
 [ext_resource type="Texture2D" uid="uid://dr3bj32nxye4v" path="res://assets/litle_black.png" id="1_sga2n"]
@@ -74,6 +74,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_eecbr"]
 resource_name = "attack"
 length = 0.4
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -298,10 +299,65 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_txbqs"]
+resource_name = "box"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_sga2n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(16, 80, 96, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cxl0p"]
 _data = {
 &"RESET": SubResource("Animation_2w6lr"),
 &"attack": SubResource("Animation_eecbr"),
+&"box": SubResource("Animation_txbqs"),
 &"idle": SubResource("Animation_rp4yb"),
 &"run": SubResource("Animation_7yqp0"),
 &"walk": SubResource("Animation_cxl0p")
@@ -341,6 +397,7 @@ position = Vector2(24, 0)
 target_position = Vector2(0, 9)
 
 [node name="PlayerDetect" type="RayCast2D" parent="."]
+position = Vector2(4, -8.66667)
 rotation = -1.5708
 target_position = Vector2(-4.37114e-06, 100)
 collision_mask = 2
@@ -370,3 +427,4 @@ position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_eecbr")
 
 [connection signal="area_entered" from="EnemyBody" to="." method="_on_body_area_entered"]
+[connection signal="area_exited" from="EnemyBody" to="." method="_on_enemy_body_area_exited"]
