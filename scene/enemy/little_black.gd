@@ -7,6 +7,8 @@ extends Enemy
 @onready var floor_detect: RayCast2D = $FloorDetect
 @onready var player_detect: RayCast2D = $PlayerDetect
 @onready var enemy_body: Area2D = $EnemyBody
+@onready var enemy_attack_box: Area2D = $EnemyAttackBox
+@onready var enemy_attack_box_collision: CollisionShape2D = $EnemyAttackBox/EnemyAttackBoxCollision
 
 @export var enemy_type: String = "default"
 
@@ -37,11 +39,12 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.flip_h = true
 		floor_detect.position.x = -FLOOR_DETECT_LENTH
 		player_detect.rotation_degrees = -PLAYER_DETECT_DEGREE
+		enemy_attack_box_collision.position.x = -8	
 	else:
 		sprite_2d.flip_h = false
 		floor_detect.position.x = FLOOR_DETECT_LENTH
 		player_detect.rotation_degrees = PLAYER_DETECT_DEGREE
-	
+		enemy_attack_box_collision.position.x = 8
 	if is_beside_platform():
 		state_machine.change_to(enemy_idle_state)
 	
@@ -76,9 +79,4 @@ func discovered_player() -> bool:
 
 func _on_body_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		print("player entered")
 		state_machine.change_to(enemy_attack_state)
-
-
-func _on_enemy_body_area_exited(area: Area2D) -> void:
-	state_machine.change_to(enemy_idle_state)

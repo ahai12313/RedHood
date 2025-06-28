@@ -443,7 +443,7 @@ metadata/_custom_type_script = "uid://bxdesvacv2b14"
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody" groups=["player"]]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_si2r4")
 
@@ -455,4 +455,4 @@ limit_bottom = 648
 limit_smoothed = true
 script = ExtResource("9_x1ni4")
 
-[connection signal="area_entered" from="PlayerBody" to="." method="_on_body_area_entered"]
+[connection signal="area_entered" from="PlayerBody" to="." method="_on_player_body_area_entered"]

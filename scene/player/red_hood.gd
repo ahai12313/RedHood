@@ -7,6 +7,8 @@ var direction = Direction.RIGHT
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $"../Marker2D"
+@onready var player_body: Area2D = $PlayerBody
+@onready var player_camera: Camera2D = $PlayerCamera
 
 @onready var player_idle_state: PlayerIdleState = $StateMachine/PlayerIdleState
 @onready var player_jump_state: PlayerJumpState = $StateMachine/PlayerJumpState
@@ -40,6 +42,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_body_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		print("enemy entered")
+func _on_player_body_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_attack"):
+		var d = area.global_position.direction_to(player_body.global_position)
+		position += d * 8
+		player_camera.shake_camera(2)

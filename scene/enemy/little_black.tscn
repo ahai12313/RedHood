@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cy7gc6ou8i3g8"]
+[gd_scene load_steps=18 format=3 uid="uid://cy7gc6ou8i3g8"]
 
 [ext_resource type="Script" uid="uid://yhhfdjqb1mqb" path="res://scene/enemy/little_black.gd" id="1_rp4yb"]
 [ext_resource type="Texture2D" uid="uid://dr3bj32nxye4v" path="res://assets/litle_black.png" id="1_sga2n"]
@@ -70,11 +70,22 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -16)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_eecbr"]
 resource_name = "attack"
 length = 0.4
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -123,6 +134,83 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_txbqs"]
+resource_name = "box"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_sga2n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(16, 80, 96, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_rp4yb"]
@@ -190,6 +278,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -16)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7yqp0"]
 resource_name = "run"
@@ -243,6 +343,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cxl0p"]
@@ -298,59 +410,17 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
-
-[sub_resource type="Animation" id="Animation_txbqs"]
-resource_name = "box"
-length = 0.6
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyAttackBox/EnemyAttackBoxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_sga2n")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(16, 80, 96, 16)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cxl0p"]
@@ -368,6 +438,9 @@ size = Vector2(8, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eecbr"]
 size = Vector2(8, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txbqs"]
+size = Vector2(2, 6)
 
 [node name="LittleBlack" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -389,6 +462,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_7yqp0")
 
@@ -419,12 +493,21 @@ script = ExtResource("6_eecbr")
 script = ExtResource("7_txbqs")
 
 [node name="EnemyBody" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBody" groups=["enemy"]]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_eecbr")
 
+[node name="EnemyAttackBox" type="Area2D" parent="." groups=["enemy_attack"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="EnemyAttackBoxCollision" type="CollisionShape2D" parent="EnemyAttackBox" groups=["enemy_attack"]]
+position = Vector2(9.33333, -7.33333)
+shape = SubResource("RectangleShape2D_txbqs")
+
 [connection signal="area_entered" from="EnemyBody" to="." method="_on_body_area_entered"]
-[connection signal="area_exited" from="EnemyBody" to="." method="_on_enemy_body_area_exited"]

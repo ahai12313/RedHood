@@ -19,7 +19,7 @@ func physics_update(delta: float) -> void:
 	own.velocity.x = own.direction * E_RUN_SPEED
 	
 func update(delta: float) -> void:
-	
+
 	if state_machine.current_state_delay > 1:
 		state_machine.change_to(own.enemy_walk_state)
 
