@@ -8,7 +8,7 @@ func init(state: State) -> void:
 	pass
 	
 func change_to(state: State):
-	print("[FSM] %s => %s" % [current_state, state])
+	#print("[FSM] %s => %s" % [current_state, state])
 	if state == current_state:
 		return
 	

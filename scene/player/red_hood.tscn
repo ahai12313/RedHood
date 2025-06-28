@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c38nbe1lp2wd2"]
+[gd_scene load_steps=20 format=3 uid="uid://c38nbe1lp2wd2"]
 
 [ext_resource type="Script" uid="uid://da6ct2hkxthgu" path="res://scene/player/red_hood.gd" id="1_nqyj4"]
 [ext_resource type="Texture2D" uid="uid://c40sdt1eibutg" path="res://assets/redhood.png" id="2_7nvxm"]
@@ -87,6 +87,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [Vector2i(0, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../PlayerHitBox/PHBCollision:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_x1ni4"]
 resource_name = "attack"
@@ -139,6 +151,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../PlayerHitBox/PHBCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_djqk2"]
@@ -205,6 +229,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-1, -0.5), Vector2(-1, 3)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../PlayerHitBox/PHBCollision:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_4l7cc"]
@@ -393,6 +429,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_si2r4"]
 size = Vector2(20, 27)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1ni4"]
+size = Vector2(9, 20)
+
 [node name="RedHood" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_nqyj4")
@@ -454,5 +493,14 @@ limit_right = 1152
 limit_bottom = 648
 limit_smoothed = true
 script = ExtResource("9_x1ni4")
+
+[node name="PlayerHitBox" type="Area2D" parent="." groups=["player_hit"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="PHBCollision" type="CollisionShape2D" parent="PlayerHitBox"]
+position = Vector2(10.5, 4)
+shape = SubResource("RectangleShape2D_x1ni4")
+disabled = true
 
 [connection signal="area_entered" from="PlayerBody" to="." method="_on_player_body_area_entered"]

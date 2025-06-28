@@ -9,6 +9,7 @@ extends Enemy
 @onready var enemy_body: Area2D = $EnemyBody
 @onready var enemy_attack_box: Area2D = $EnemyAttackBox
 @onready var enemy_attack_box_collision: CollisionShape2D = $EnemyAttackBox/EnemyAttackBoxCollision
+@onready var enemy_stats: Stats = $EnemyStats
 
 @export var enemy_type: String = "default"
 
@@ -22,9 +23,12 @@ const PLAYER_DETECT_DEGREE: float = -90
 
 var direction = Direction.LEFT
 var player: Area2D = null
+var world: World = null
 
 func _ready() -> void:
+	
 	_init_player()
+	world = get_tree().get_first_node_in_group("world")
 	floor_detect.position.x = FLOOR_DETECT_LENTH
 	player_detect.rotation_degrees = PLAYER_DETECT_DEGREE
 	
@@ -67,6 +71,12 @@ func _get_direction() -> void:
 		var d = global_position.direction_to(player.global_position)
 		direction = -1 if d.x < 0 else 1
 
+func _deal_damage():
+	world.shake_camera(4)
+	enemy_stats.health -= 1
+	if enemy_stats.health == 0:
+		queue_free()
+
 func is_beside_platform() -> bool:
 	return not floor_detect.is_colliding()
 
@@ -80,3 +90,6 @@ func discovered_player() -> bool:
 func _on_body_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		state_machine.change_to(enemy_attack_state)
+	elif area.is_in_group("player_hit"):
+		#print("[enemy] hurt")
+		_deal_damage()

@@ -1,6 +1,6 @@
 extends Camera2D
 
-signal camera_should_shake(amount: float)
+
 
 # 震动强度
 @export var strength := 0.0
@@ -8,7 +8,8 @@ signal camera_should_shake(amount: float)
 @export var recovery_speed := 16.0
 
 func _ready():
-	camera_should_shake.connect(func (amount: float):
+	var world = get_tree().get_first_node_in_group("world")
+	world.camera_should_shake.connect(func (amount: float):
 		strength += amount
 	)
 	var target_width = 600  # 目标视口宽度
@@ -26,6 +27,3 @@ func _process(delta: float) -> void:
 		randf_range(-strength, strength)
 	)
 	strength = move_toward(strength, 0, recovery_speed * delta)
-
-func shake_camera(amount: float) -> void:
-	camera_should_shake.emit(amount)
