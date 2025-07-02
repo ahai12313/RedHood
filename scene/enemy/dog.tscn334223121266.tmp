@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://4nwtobn6twot"]
+
+[ext_resource type="Texture2D" uid="uid://bpc3lwycr8q0o" path="res://assets/dog.png" id="1_5fony"]
+[ext_resource type="Script" uid="uid://b0a4kituefu1h" path="res://scene/enemy/dog.gd" id="1_8231t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vop7"]
+atlas = ExtResource("1_5fony")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rlsf"]
+atlas = ExtResource("1_5fony")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de8tt"]
+atlas = ExtResource("1_5fony")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mho6"]
+atlas = ExtResource("1_5fony")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8231t"]
+atlas = ExtResource("1_5fony")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kf8v"]
+atlas = ExtResource("1_5fony")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vop7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vop7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rlsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de8tt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mho6")
+}],
+"loop": true,
+"name": &"pounce",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8231t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kf8v")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fony"]
+size = Vector2(12, 15)
+
+[node name="Dog" type="CharacterBody2D"]
+script = ExtResource("1_8231t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_5vop7")
+animation = &"pounce"
+frame_progress = 0.995714
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_5fony")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://0lyvcldo8vje"]
+[gd_scene load_steps=9 format=3 uid="uid://0lyvcldo8vje"]
 
 [ext_resource type="Script" uid="uid://dvwgs7sxogw1d" path="res://scene/world.gd" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://c38nbe1lp2wd2" path="res://scene/player/red_hood.tscn" id="3_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://ctd81kw3r752c" path="res://scene/snow.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cy7gc6ou8i3g8" path="res://scene/enemy/little_black.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b8tu2cfr5od3j" path="res://scene/enemy/drone.tscn" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://4nwtobn6twot" path="res://scene/enemy/dog.tscn" id="6_dwbse"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gv5m4"]
 
@@ -47,3 +48,6 @@ enemy_type = "boxer"
 
 [node name="Drone" parent="." instance=ExtResource("5_036b0")]
 position = Vector2(492, 552)
+
+[node name="Dog" parent="." instance=ExtResource("6_dwbse")]
+position = Vector2(98, 604)

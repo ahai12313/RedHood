@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://4nwtobn6twot"]
+
+[ext_resource type="Texture2D" uid="uid://bpc3lwycr8q0o" path="res://assets/dog.png" id="1_5fony"]
+[ext_resource type="Script" uid="uid://b0a4kituefu1h" path="res://scene/enemy/dog.gd" id="1_8231t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efl37"]
+atlas = ExtResource("1_5fony")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vop7"]
+atlas = ExtResource("1_5fony")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rlsf"]
+atlas = ExtResource("1_5fony")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de8tt"]
+atlas = ExtResource("1_5fony")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mho6"]
+atlas = ExtResource("1_5fony")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8231t"]
+atlas = ExtResource("1_5fony")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kf8v"]
+atlas = ExtResource("1_5fony")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5vop7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efl37")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vop7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rlsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_de8tt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mho6")
+}],
+"loop": true,
+"name": &"pounce",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8231t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kf8v")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fony"]
+size = Vector2(12, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8231t"]
+radius = 93.1933
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8231t"]
+size = Vector2(12, 15)
+
+[node name="Dog" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_8231t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_5vop7")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dog_body"]]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_5fony")
+
+[node name="PounceArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="PounceCollision" type="CollisionShape2D" parent="PounceArea"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_8231t")
+
+[node name="DogBody" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="DogBodyCollision" type="CollisionShape2D" parent="DogBody"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_8231t")
+
+[connection signal="area_entered" from="PounceArea" to="." method="_on_pounce_area_area_entered"]
+[connection signal="area_entered" from="DogBody" to="." method="_on_dog_body_area_entered"]
+[connection signal="area_exited" from="DogBody" to="." method="_on_dog_body_area_exited"]
